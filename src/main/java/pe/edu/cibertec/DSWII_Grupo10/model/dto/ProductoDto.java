@@ -10,6 +10,6 @@ public class ProductoDto implements DtoEntity {
     private String productoname;
     private String precio;
     private Double stock;
-    private CategoriaDto category;
-    private UsuarioDto supplier;
+    private CategoriaDto categoria;
+    private UsuarioDto usuario;
 }
