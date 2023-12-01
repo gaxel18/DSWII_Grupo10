@@ -1,30 +1,38 @@
 package pe.edu.cibertec.DSWII_Grupo10.model.bd;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.text.DecimalFormat;
-import java.util.Date;
+import java.util.Set;
 
-@NoArgsConstructor
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "usuarios")
+@Table(name = "usuario")
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer usuarioid;
-    @Column(name = "usuarioname")
-    private String usuarioname;
-    @Column(name = "usuarioape")
-    private String usuarioape;
-    @Column(name = "direccion")
-    private String direccion;
-    @Column(name = "telefono")
-    private String telefono;
+    private Integer idusuario;
+    @Column(name = "nomusuario")
+    private String nomusuario;
     @Column(name = "email")
     private String email;
-    @Column(name = "FechaRegistro")
-    private Date FechaRegistro;
+    @Column(name = "password")
+    private String password;
+    @Column(name = "nombres")
+    private String nombres;
+    @Column(name = "apellidos")
+    private String apellidos;
+    @Column(name = "activo")
+    private Boolean activo;
+    @ManyToMany(
+            cascade = CascadeType.MERGE,
+            fetch = FetchType.EAGER )
+    @JoinTable(name = "usuario_rol", joinColumns =
+    @JoinColumn(name = "idusuario"),
+            inverseJoinColumns = @JoinColumn(name = "idrol"))
+    private Set<Rol> roles;
 }

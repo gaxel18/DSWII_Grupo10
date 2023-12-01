@@ -8,4 +8,6 @@ import pe.edu.cibertec.DSWII_Grupo10.model.bd.Usuario;
 public interface UsuarioRepository
         extends JpaRepository<Usuario, Integer>
 {
+    Usuario findByNomusuario(String nomusuario);
+
 }

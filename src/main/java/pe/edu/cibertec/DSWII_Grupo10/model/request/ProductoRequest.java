@@ -6,8 +6,8 @@ import lombok.Data;
 public class ProductoRequest {
     private Integer productoid;
     private String productoname;
-    private String precio;
-    private Double stock;
+    private Double precioporunidad;
+    private Boolean descontinuado;
+    private Integer supplierid;
     private Integer categoria;
-    private Integer usuario;
 }

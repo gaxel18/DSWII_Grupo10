@@ -13,23 +13,25 @@ import java.util.Date;
 @Table(name = "productos")
 public class Producto {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Integer productoid;
     @Column(name = "productoname")
     private String productoname;
-    @Column(name = "descripcion")
-    private String descripcion;
-    @Column(name = "precio")
-    private Double precio;
+    @Column(name = "cantidadporunidad")
+    private String cantidad;
+    @Column(name = "preciounitario")
+    private Double preciounitario;
     @Column(name = "stock")
     private Integer stock;
-
-    @Column(name = "fechaCreacio")
-    private Date fechaCreacion;
-
+    @Column(name = "ordernadas")
+    private Integer ordenadas;
+    @Column(name = "reorderlevel")
+    private Integer reorderlevel;
+    @Column(name = "descontinuado")
+    private Boolean descontinuado;
     @ManyToOne
-    @JoinColumn(name = "usuarioid")
-    private Usuario usuario;
+    @JoinColumn(name = "artesanoid")
+    private Artesano artesano;
     @ManyToOne
     @JoinColumn(name = "categoriaid")
     private Categoria categoria;

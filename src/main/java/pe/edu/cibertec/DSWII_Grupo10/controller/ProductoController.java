@@ -7,9 +7,13 @@ import org.springframework.web.bind.annotation.*;
 import pe.edu.cibertec.DSWII_Grupo10.exception.ResourceNotFoundException;
 import pe.edu.cibertec.DSWII_Grupo10.model.bd.Producto;
 import pe.edu.cibertec.DSWII_Grupo10.service.ProductoService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RestController
@@ -92,7 +96,6 @@ public class ProductoController {
                 .orElseThrow(() -> new ResourceNotFoundException("El producto con el Id Nro. "+
                         id + " no existe."));
         oldProducto.setProductoname(producto.getProductoname());
-        oldProducto.setDescripcion(producto.getDescripcion());
         return new ResponseEntity<>(
                 productoService.guardar(oldProducto), HttpStatus.OK
         );

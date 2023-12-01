@@ -1,5 +1,6 @@
 package pe.edu.cibertec.DSWII_Grupo10.exception;
 
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -19,6 +20,37 @@ public class ControllerExceptionHandler {
     ){
         ErrorMessage message = new ErrorMessage(
                 HttpStatus.NOT_FOUND.value(),
+                new Date(),
+                ex.getMessage(),
+                request.getDescription(false)
+        );
+        return message;
+    }
+
+
+    @ExceptionHandler(MaxUploadSizeExceedException.class)
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+    public ErrorMessage maxUploadSizeExceedException(
+            MaxUploadSizeExceedException ex,
+            WebRequest request
+    ){
+        ErrorMessage message = new ErrorMessage(
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                new Date(),
+                "Verificar el tamaño del archivo",
+                request.getDescription(false)
+        );
+        return message;
+    }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+    public ErrorMessage globalExceptionHandler(
+            Exception ex,
+            WebRequest request
+    ){
+        ErrorMessage message = new ErrorMessage(
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 new Date(),
                 ex.getMessage(),
                 request.getDescription(false)
