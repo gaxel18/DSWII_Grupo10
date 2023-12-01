@@ -3,6 +3,7 @@ package pe.edu.cibertec.DSWII_Grupo10.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.cibertec.DSWII_Grupo10.exception.ResourceNotFoundException;
 import pe.edu.cibertec.DSWII_Grupo10.model.bd.Categoria;
@@ -11,6 +12,7 @@ import pe.edu.cibertec.DSWII_Grupo10.service.CategoriaService;
 import java.util.ArrayList;
 import java.util.List;
 
+@PreAuthorize("hasRole('ADMIN')")
 @AllArgsConstructor
 @RestController
 @RequestMapping(path = "api/v1/category")
